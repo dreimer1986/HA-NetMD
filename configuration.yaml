@@ -1,7 +1,17 @@
 ffmpeg:
 
 shell_command:
-  start_ffmpeg_minidisc: nohup ffmpeg -f pulse -i alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo -acodec libmp3lame -b:a 256k -ac 2 -ar 44100 -f mpegts -listen 1 http://0.0.0.0:8888/live.mp3 > /dev/null 2>&1 &
-  stop_ffmpeg_minidisc: pkill -f "http://0.0.0.0:8888/live.mp3"
-  set_minidisc_linein_port: ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 -p 22 "pactl set-source-port alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo analog-input-linein"
-  set_minidisc_linein_vol: ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 -p 22 "pactl set-source-volume alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo 70%"
+  start_ffmpeg_minidisc: >
+    nohup bash -c 'while true; do ffmpeg -threads 1 -f pulse -i alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo -acodec libmp3lame -b:a 256k -ac 2 -ar 44100 -f mpegts -listen 1 http://0.0.0.0:8888/live.mp3; sleep 1; done' > /config/ffmpeg_minidisc.log 2>&1 &
+  stop_ffmpeg_minidisc: >
+    pkill -f "http://0.0.0.0:8888/live.mp3"
+  set_minidisc_linein_port: >
+    ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 -p 22 "pactl set-source-port alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo analog-input-linein"
+  set_minidisc_linein_vol: >
+    ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 -p 22 "pactl set-source-volume alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo 70%"
+
+command_line:
+  - sensor:
+      name: "FFmpeg Status"
+      command: "tail -n 1 /config/ffmpeg_minidisc.log 2>/dev/null || echo 'Kein Log'"
+      scan_interval: 5
