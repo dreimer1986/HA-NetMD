@@ -39,9 +39,9 @@ Now you can use the shell commands I made for that.
 
 ## Pictures
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/master/media/Host.jpg" alt="Host Hardware">
+  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/main/media/Host.jpg" alt="Host Hardware">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/master/media/HA.png" alt="Home Assistant Entities">
+  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/main/media/HA.png" alt="Home Assistant Entities">
 </p>
