@@ -8,12 +8,18 @@ The integration provides playback, track selection, seeking, disc and track meta
 
 Audio transfer only works via Line-In of a sound card. My examples show a USB Sound card on the very same host HA is running on and the Player is plugged into either.
 
-## Configuarion.yaml
+## General
+
+This setup creates a remote controllable stream on http://homeassistant.local:8888/live.mp3 that you can use as Radio station inside your Music Assistant instance or any other Player you want to use.
+
+## Configuration.yaml
 
 ### set_minidisc_linein_port:
 Only needed if your sink switches back to microphone after reboot.
+
 ### set_minidisc_linein_vol:
 Only needed if your volume needs to be set back to 70% after reboot.
+
 Both are only there for reference. I dont need them after I used both once.
 
 #### P.S.
