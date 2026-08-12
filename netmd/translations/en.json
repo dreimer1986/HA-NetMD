@@ -1,0 +1,35 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "This NetMD device is already configured.",
+      "cannot_connect": "The NetMD device could not be opened."
+    },
+    "error": {
+      "cannot_connect": "Failed to communicate with the NetMD device.",
+      "no_devices": "No supported NetMD device was found.",
+      "usb_permission": "Home Assistant does not have permission to access the USB device."
+    },
+    "step": {
+      "confirm": {
+        "description": "Set up the discovered {model}?",
+        "title": "Set up NetMD"
+      },
+      "user": {
+        "data": {
+          "device": "Device"
+        },
+        "description": "Select an attached NetMD recorder/player.",
+        "title": "Set up NetMD"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "available_time": {"name": "Available time"},
+      "disc_title": {"name": "Disc title"},
+      "recorded_time": {"name": "Recorded time"},
+      "track_count": {"name": "Track count"}
+    }
+  }
+}
+

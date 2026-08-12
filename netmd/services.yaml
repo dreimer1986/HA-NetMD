@@ -1,0 +1,95 @@
+rename_track:
+  name: Rename track
+  description: Rename a track on the inserted MiniDisc. Track numbers start at 1.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+  fields:
+    track_number:
+      name: Track number
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+    title:
+      name: Title
+      required: true
+      selector:
+        text:
+
+rename_disc:
+  name: Rename disc
+  description: Rename the inserted MiniDisc while preserving its group metadata.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+  fields:
+    title:
+      name: Title
+      required: true
+      selector:
+        text:
+
+move_track:
+  name: Move track
+  description: Move a track to another position. Track numbers start at 1.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+  fields:
+    source_track_number:
+      name: Source track number
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+    destination_track_number:
+      name: Destination track number
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+
+delete_track:
+  name: Delete track
+  description: Permanently delete a track from the inserted MiniDisc.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+  fields:
+    track_number:
+      name: Track number
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+
+play_track:
+  name: Play track
+  description: Select and play a track. Track numbers start at 1.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+  fields:
+    track_number:
+      name: Track number
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+

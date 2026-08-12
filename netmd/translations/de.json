@@ -1,0 +1,35 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Dieses NetMD-Gerät ist bereits eingerichtet.",
+      "cannot_connect": "Das NetMD-Gerät konnte nicht geöffnet werden."
+    },
+    "error": {
+      "cannot_connect": "Die Kommunikation mit dem NetMD-Gerät ist fehlgeschlagen.",
+      "no_devices": "Es wurde kein unterstütztes NetMD-Gerät gefunden.",
+      "usb_permission": "Home Assistant hat keine Berechtigung für den Zugriff auf das USB-Gerät."
+    },
+    "step": {
+      "confirm": {
+        "description": "Das gefundene Gerät {model} einrichten?",
+        "title": "NetMD einrichten"
+      },
+      "user": {
+        "data": {
+          "device": "Gerät"
+        },
+        "description": "Wähle einen angeschlossenen NetMD-Recorder/-Player aus.",
+        "title": "NetMD einrichten"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "available_time": {"name": "Verfügbare Zeit"},
+      "disc_title": {"name": "Disc-Titel"},
+      "recorded_time": {"name": "Belegte Zeit"},
+      "track_count": {"name": "Titelanzahl"}
+    }
+  }
+}
+
