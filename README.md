@@ -36,3 +36,12 @@ chmod 600 /config/.ssh/id_rsa
 chmod 644 /config/.ssh/id_rsa.pub
 
 Now you can use the shell commands I made for that.
+
+## Pictures
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/master/media/Host.jpg" alt="Host Hardware">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/NetMD/refs/heads/master/media/HA.png" alt="Home Assistant Entities">
+</p>
