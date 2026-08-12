@@ -6,7 +6,9 @@ Copy this complete directory to `/config/custom_components/netmd`, restart Home 
 
 The integration provides playback, track selection, seeking, disc and track metadata, capacity sensors, and actions for renaming, moving, playing, and deleting tracks. Track numbers in action data start at 1.
 
-High-speed audio transfer is deliberately not part of version 0.1.0. It uses a separate secure-transfer protocol with device-specific behavior and needs real hardware acceptance tests before it can safely be exposed through Home Assistant.
+Audio transfer only works via Line-In of a sound card. My examples show a USB Sound card on the very same host HA is running on and the Player is plugged into either.
+
+## Configuarion.yaml
 
 ### set_minidisc_linein_port:
 Only needed if your sink switches back to microphone after reboot.
