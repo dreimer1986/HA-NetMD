@@ -18,3 +18,26 @@ separate secure-transfer protocol with device-specific behavior and needs real
 hardware acceptance tests before it can safely be exposed through Home
 Assistant.
 
+P.S. "alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo" is the name of the
+line-in audio input sink in my case. You need to find your own line-in first.
+For that "pactl list | less" is your best friend. Look for the name of your own
+line-in device and replace it on the commands.
+
+## set_minidisc_linein_port:
+Only needed if your sink switches back to microphone after reboot.
+## set_minidisc_linein_vol:
+Only needed if your volume needs to be set back to 70% after reboot.
+Both are only there for reference. I dont need them after I used both once.
+
+## SSH
+If you want to be able to change the default input and volume by shell_command
+at all, you need to abuse ssh for tinkering from one Docker inside another:
+
+mkdir -p /config/.ssh
+cd /config/.ssh
+ssh-keygen -t rsa -b 4096 -f /config/.ssh/id_rsa -N ""
+chmod 700 /config/.ssh
+chmod 600 /config/.ssh/id_rsa
+chmod 644 /config/.ssh/id_rsa.pub
+
+Now you can use the shell commands I made for that.

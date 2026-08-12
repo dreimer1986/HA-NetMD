@@ -1,0 +1,35 @@
+alias: MiniDisc Start
+description: >-
+  If MiniDisc Player media_player entity is switched on or starts playback,
+  start the FFMPEG stream immediately!
+triggers:
+  - trigger: media_player.started_playing
+    target:
+      entity_id: media_player.sony_mz_n505
+  - trigger: media_player.turned_on
+    target:
+      entity_id: media_player.sony_mz_n505
+conditions: []
+actions:
+  - action: shell_command.start_ffmpeg_minidisc
+    metadata: {}
+    data: {}
+mode: single
+
+alias: MiniDisc Stop
+description: >-
+  If MiniDisc Player media_player entity is switched off or stops playback, stop
+  the FFMPEG stream, too!
+triggers:
+  - trigger: media_player.turned_off
+    target:
+      entity_id: media_player.sony_mz_n505
+  - trigger: media_player.stopped_playing
+    target:
+      entity_id: media_player.sony_mz_n505
+conditions: []
+actions:
+  - action: shell_command.stop_ffmpeg_minidisc
+    metadata: {}
+    data: {}
+mode: single
