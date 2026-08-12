@@ -12,7 +12,6 @@ triggers:
 conditions: []
 actions:
   - action: shell_command.start_ffmpeg_minidisc
-    metadata: {}
     data: {}
 mode: single
 
@@ -30,6 +29,5 @@ triggers:
 conditions: []
 actions:
   - action: shell_command.stop_ffmpeg_minidisc
-    metadata: {}
     data: {}
 mode: single
