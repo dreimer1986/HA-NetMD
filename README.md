@@ -109,3 +109,15 @@ The Add-On running inside Home Assistant.
 <p align="center">
   <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/HA.png" alt="Home Assistant Entities">
 </p>
+
+Pics from usage on my Pixel 7 Pro:
+
+Listening to the Add-On's stream inside Music Assistant.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/mobile.png" alt="Playback in Music Assistant">
+</p>
+
+Splitscreen: Controlling the current track being played back via Home Assistant app (below) and listening to the Add-On's stream inside Music Assistant (above)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/mobile-split.png" alt="Splitscreen controlling and listening">
+</p>
