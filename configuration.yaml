@@ -2,9 +2,9 @@ ffmpeg:
 
 shell_command:
   start_ffmpeg_minidisc: >
-    nohup bash -c 'while true; do ffmpeg -threads 1 -f pulse -i alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo -acodec libmp3lame -b:a 256k -ac 2 -ar 44100 -f mpegts -listen 1 http://0.0.0.0:8888/live.mp3; sleep 1; done' > /config/ffmpeg_minidisc.log 2>&1 &
+    python3 /config/scripts/minidisc_stream.py >/dev/null 2>&1 &
   stop_ffmpeg_minidisc: >
-    pkill -f "http://0.0.0.0:8888/live.mp3"
+    python3 -c 'import os, signal; pid_file="/config/scripts/minidisc_stream.pid"; os.path.exists(pid_file) and (os.kill(int(open(pid_file).read()), signal.SIGTERM), os.remove(pid_file))'
   set_minidisc_linein_port: >
     ssh -o StrictHostKeyChecking=no -i /config/.ssh/id_rsa root@127.0.0.1 -p 22 "pactl set-source-port alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo analog-input-linein"
   set_minidisc_linein_vol: >
@@ -15,3 +15,28 @@ command_line:
       name: "FFmpeg Status"
       command: "tail -n 1 /config/ffmpeg_minidisc.log 2>/dev/null || echo 'Kein Log'"
       scan_interval: 5
+  - sensor:
+      name: "MiniDisc Streamer Status"
+      unique_id: minidisc_streamer_status
+      # Prüft, ob die PID-Datei existiert UND die darin enthaltene PID aktiv ist
+      command: >
+        if [ -f /config/scripts/minidisc_stream.pid ] && kill -0 $(cat /config/scripts/minidisc_stream.pid) 2>/dev/null; then
+          echo "ON"
+        else
+          echo "OFF"
+        fi
+      scan_interval: 5
+      # Wandelt "ON" / "OFF" in einen klaren Status-Text für das Dashboard um
+      value_template: >
+        {% if value == 'ON' %}
+          Aktiv
+        {% else %}
+          Gestoppt
+        {% endif %}
+      # Setzt ein passendes Icon je nach Zustand
+      icon: >
+        {% if value == 'ON' %}
+          mdi:radio-tower
+        {% else %}
+          mdi:radio-tower-off
+        {% endif %}

@@ -10,10 +10,14 @@ This setup creates a remote controllable stream on http://homeassistant.local:88
     * [MiniDisc Start](#minidisc_start)
     * [MiniDisc Stop](#minidisc_stop)
   * [Configuration.yaml](#configuration)
-    * [start_ffmpeg_minidisc](#start_ffmpeg_minidisc)
-    * [stop_ffmpeg_minidisc](#stop_ffmpeg_minidisc)
-    * [set_minidisc_linein_port](#set_minidisc_linein_port)
-    * [set_minidisc_linein_vol](#set_minidisc_linein_vol)
+    * [shell_command](#shell_command)
+      * [start_ffmpeg_minidisc](#start_ffmpeg_minidisc)
+      * [stop_ffmpeg_minidisc](#stop_ffmpeg_minidisc)
+      * [set_minidisc_linein_port](#set_minidisc_linein_port)
+      * [set_minidisc_linein_vol](#set_minidisc_linein_vol)
+    * [command_line](#command_line)
+      * [FFmpeg Status](#ffmpeg_status)
+      * [MiniDisc Streamer Status](#minidisc_streamer_status)
   * [P.S.](#ps)
   * [SSH](#ssh)
 * [Pictures](#pictures)
@@ -37,33 +41,45 @@ Copy the complete `netmd` directory to `/config/custom_components/netmd`, restar
 
 #### <a name="minidisc_start"></a>MiniDisc Start
 
-This automation waits for the NetMD media_player entity to start playback or come online. If this happens it starts the FFMPEG stream.
+This automation waits for the NetMD media_player entity to start playback or come online. If this happens it starts the FFmpeg stream.
 
 #### <a name="minidisc_stop"></a>MiniDisc Stop
 
-This automation waits for the NetMD media_player entity to stop playback or become offline. If this happens it stops the FFMPEG stream.
+This automation waits for the NetMD media_player entity to stop playback or become offline. If this happens it stops the FFmpeg stream.
 
 ### <a name="configuration"></a>Configuration.yaml
 
-#### <a name="start_ffmpeg_minidisc"></a>start_ffmpeg_minidisc
+#### <a name="shell_command"></a>shell_command
 
-This command opens FFMPEG with the sound card's line-in as input and the URL on port 8888 as stream in MP3 format.
+##### <a name="start_ffmpeg_minidisc"></a>start_ffmpeg_minidisc
 
-#### <a name="stop_ffmpeg_minidisc"></a>stop_ffmpeg_minidisc
+This command opens FFmpeg with the sound card's line-in as input and the URL on port 8888 as stream in MP3 format. To allow more than one connection and stay alive when the stream is stopped for a short while a Python script is now creating a asynchronous web server that hosts the FFmpeg conversion via pipe.
 
-This command closes exactly the FFMPEG session we opened before and keeps the rest alone.
+##### <a name="stop_ffmpeg_minidisc"></a>stop_ffmpeg_minidisc
 
-#### <a name="set_minidisc_linein_port"></a>set_minidisc_linein_port
+This command closes exactly the FFmpeg session we opened before and keeps the rest alone.
+
+##### <a name="set_minidisc_linein_port"></a>set_minidisc_linein_port
 
 Only needed if your pulse audio sink switches back to microphone port as default after reboot.
 
-#### <a name="set_minidisc_linein_vol"></a>set_minidisc_linein_vol
+##### <a name="set_minidisc_linein_vol"></a>set_minidisc_linein_vol
 
 Only needed if your line-in volume needs to be set back to 70% after reboot.
 
 The last two are only there for reference. I don't need them anymore after I used both once.
 
-#### <a name="ps"></a>P.S.
+#### <a name="command_line"></a>command_line
+
+##### <a name="ffmpeg_status"></a>FFmpeg Status
+
+This sensor outputs the last line of the debug log the stream service creates. Thus you can follow problems showing up by checking this sensor.
+
+##### <a name="minidisc_streamer_status"></a>MiniDisc Streamer Status
+
+This sensor outputs if the FFmpeg process is running or not. It verifies this by checking if the PID that was logged when FFmpeg was started is still active or not.
+
+### <a name="ps"></a>P.S.
 
 "alsa_input.usb-0d8c_USB_Sound_Device-00.analog-stereo" is the name of the line-in audio input sink in my case. You need to find your own line-in first. For that "pactl list | less" is your best friend. Look for the name of your own line-in device and replace it on the commands.
 
