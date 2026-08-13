@@ -11,7 +11,10 @@ triggers:
       entity_id: media_player.sony_mz_n505
 conditions: []
 actions:
-  - action: shell_command.start_ffmpeg_minidisc
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.ffmpeg_stream
     data: {}
 mode: single
 
@@ -28,6 +31,9 @@ triggers:
       entity_id: media_player.sony_mz_n505
 conditions: []
 actions:
-  - action: shell_command.stop_ffmpeg_minidisc
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.ffmpeg_stream
     data: {}
 mode: single

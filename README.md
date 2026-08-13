@@ -11,11 +11,10 @@ This setup creates a remote controllable stream on http://homeassistant.local:88
     * [MiniDisc Stop](#minidisc_stop)
   * [Configuration.yaml](#configuration)
     * [shell_command](#shell_command)
-      * [start_ffmpeg_minidisc](#start_ffmpeg_minidisc)
-      * [stop_ffmpeg_minidisc](#stop_ffmpeg_minidisc)
       * [set_minidisc_linein_port](#set_minidisc_linein_port)
       * [set_minidisc_linein_vol](#set_minidisc_linein_vol)
     * [command_line](#command_line)
+      * [FFmpeg Stream](#ffmpeg_stream)
       * [FFmpeg Status](#ffmpeg_status)
       * [MiniDisc Streamer Status](#minidisc_streamer_status)
   * [P.S.](#ps)
@@ -51,14 +50,6 @@ This automation waits for the NetMD media_player entity to stop playback or beco
 
 #### <a name="shell_command"></a>shell_command
 
-##### <a name="start_ffmpeg_minidisc"></a>start_ffmpeg_minidisc
-
-This command opens FFmpeg with the sound card's line-in as input and the URL on port 8888 as stream in MP3 format. To allow more than one connection and stay alive when the stream is stopped for a short while a Python script is now creating a asynchronous web server that hosts the FFmpeg conversion via pipe.
-
-##### <a name="stop_ffmpeg_minidisc"></a>stop_ffmpeg_minidisc
-
-This command closes exactly the FFmpeg session we opened before and keeps the rest alone.
-
 ##### <a name="set_minidisc_linein_port"></a>set_minidisc_linein_port
 
 Only needed if your pulse audio sink switches back to microphone port as default after reboot.
@@ -70,6 +61,10 @@ Only needed if your line-in volume needs to be set back to 70% after reboot.
 The last two are only there for reference. I don't need them anymore after I used both once.
 
 #### <a name="command_line"></a>command_line
+
+##### <a name="ffmpeg_stream"></a>FFmpeg Stream
+
+This switch controls the running as background process FFmpeg with the sound card's line-in as input and the URL on port 8888 as stream in MP3 format as output. To allow more than one connection and stay alive when the stream is stopped for a short while a Python script is now creating a asynchronous web server that hosts the FFmpeg conversion via pipe.
 
 ##### <a name="ffmpeg_status"></a>FFmpeg Status
 
