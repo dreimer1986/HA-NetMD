@@ -93,3 +93,18 @@ play_track:
           max: 255
           mode: box
 
+fast_forward:
+  name: Fast forward
+  description: Start fast-forwarding the current track on the inserted MiniDisc.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player
+
+rewind:
+  name: Rewind
+  description: Start rewinding the current track on the inserted MiniDisc.
+  target:
+    entity:
+      integration: netmd
+      domain: media_player

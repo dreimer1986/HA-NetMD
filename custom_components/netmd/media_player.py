@@ -25,6 +25,8 @@ SERVICE_RENAME_DISC = "rename_disc"
 SERVICE_MOVE_TRACK = "move_track"
 SERVICE_DELETE_TRACK = "delete_track"
 SERVICE_PLAY_TRACK = "play_track"
+SERVICE_FAST_FORWARD = "fast_forward"
+SERVICE_REWIND = "rewind"
 
 ATTR_TRACK_NUMBER = "track_number"
 ATTR_SOURCE_TRACK_NUMBER = "source_track_number"
@@ -73,12 +75,26 @@ async def async_setup_entry(
         {vol.Required(ATTR_TRACK_NUMBER): TRACK_SCHEMA},
         "async_play_track",
     )
+    platform.async_register_entity_service(
+        SERVICE_FAST_FORWARD,
+        {},
+        "async_fast_forward",
+    )
+    platform.async_register_entity_service(
+        SERVICE_REWIND,
+        {},
+        "async_rewind",
+    )
 
 
 class NetMDMediaPlayer(NetMDEntity, MediaPlayerEntity):
     """Represent the attached NetMD recorder/player."""
 
     _attr_name = None
+    # Keep the transport controls separate in Home Assistant's media-player UI.
+    # Without this, the frontend replaces STOP with PAUSE whenever both features
+    # are supported, even though stopping is required for NetMD power saving.
+    _attr_assumed_state = True
     _attr_supported_features = (
         MediaPlayerEntityFeature.PLAY
         | MediaPlayerEntityFeature.PAUSE
@@ -177,6 +193,14 @@ class NetMDMediaPlayer(NetMDEntity, MediaPlayerEntity):
 
     async def async_media_previous_track(self) -> None:
         await self.coordinator.async_run_command(self.coordinator.hub.previous_track)
+
+    async def async_fast_forward(self) -> None:
+        """Start fast-forwarding the current track."""
+        await self.coordinator.async_run_command(self.coordinator.hub.fast_forward)
+
+    async def async_rewind(self) -> None:
+        """Start rewinding the current track."""
+        await self.coordinator.async_run_command(self.coordinator.hub.rewind)
 
     async def async_media_seek(self, position: float) -> None:
         track = self.coordinator.data.current_track

@@ -170,6 +170,12 @@ class NetMDHub:
     def pause(self) -> None:
         self._run(self._protocol.pause)
 
+    def fast_forward(self) -> None:
+        self._run(self._protocol.fast_forward)
+
+    def rewind(self) -> None:
+        self._run(self._protocol.rewind)
+
     def stop(self) -> None:
         self._run(self._protocol.stop)
 
