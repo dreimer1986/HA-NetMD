@@ -38,37 +38,37 @@ Audio transfer only works via Line-In of a sound card as the NetMD-Protocol does
 
 Rename a track on the inserted MiniDisc.
 
-**Target:** Target NetMD Device or media_player entity.
-**Track Number:** Track to be renamed. Track numbers start at 1.
+**Target:** Target NetMD Device or media_player entity.<br>
+**Track Number:** Track to be renamed. Track numbers start at 1.<br>
 **Title:** New Title of the Title.
 
 ### <a name="ename_disc"></a>Rename disc
 
 Rename the inserted MiniDisc while preserving its group metadata.
 
-**Target:** Target NetMD Device or media_player entity.
+**Target:** Target NetMD Device or media_player entity.<br>
 **Title:** New Title of the MiniDisc.
 
 ### <a name="move_track"></a>Move track
 
 Move a track to another position.
 
-**Target:** Target NetMD Device or media_player entity.
-**Source Track Number:** Source Track number. Track numbers start at 1.
+**Target:** Target NetMD Device or media_player entity.<br>
+**Source Track Number:** Source Track number. Track numbers start at 1.<br>
 **Destination Track Number:** Destination Track number. Track numbers start at 1.
 
 ### <a name="delete_track"></a>Delete track
 
 Permanently delete a track from the inserted MiniDisc.
 
-**Target:** Target NetMD Device or media_player entity.
+**Target:** Target NetMD Device or media_player entity.<br>
 **Track Number:** Track to be deleted. WARNING! This cannot be made undone! Track numbers start at 1.
 
 ### <a name="play_track"></a>Play track
 
 Select and play a track.
 
-**Target:** Target NetMD Device or media_player entity.
+**Target:** Target NetMD Device or media_player entity.<br>
 **Track Number:** Track to be played. Track numbers start at 1.
 
 ### <a name="fast_forward"></a>Fast forward
