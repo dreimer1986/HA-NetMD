@@ -4,6 +4,14 @@ Native Python Home Assistant integration for USB-connected NetMD players and rec
 This setup creates a remote controllable stream on http://homeassistant.local:8888/live.mp3 that you can use as Radio Station inside your Music Assistant instance or any other media player you want to use.
 
 * [Features](#features)
+  * [Actions](#actions)
+    * [Rename track](#rename_track)
+    * [Rename disc](#rename_disc)
+    * [Move track](#move_track)
+    * [Delete track](#delete_track)
+    * [Play track](#play_track)
+    * [Fast forward](#fast_forward)
+    * [Rewind](#rewind)
 * [HACS Install](#hacs_install)
 * [Manual Install](#manual_install)
   * [Automations.yaml](#automations)
@@ -25,6 +33,55 @@ This setup creates a remote controllable stream on http://homeassistant.local:88
 
 The integration provides playback, track selection, seeking, disc and track metadata, capacity sensors, and actions for renaming, moving, playing, and deleting tracks. Track numbers in action data start at 1.
 Audio transfer only works via Line-In of a sound card as the NetMD-Protocol does not allow direct streaming of audio.
+
+### <a name="rename_track"></a>Rename track
+
+Rename a track on the inserted MiniDisc.
+
+Target: Target NetMD Device or media_player entity.
+Track Number: Track to be renamed. Track numbers start at 1.
+Title: New Title of the Title.
+
+### <a name="ename_disc"></a>Rename disc
+
+Rename the inserted MiniDisc while preserving its group metadata.
+
+Target: Target NetMD Device or media_player entity.
+Title: New Title of the MiniDisc.
+
+### <a name="move_track"></a>Move track
+
+Move a track to another position.
+
+Target: Target NetMD Device or media_player entity.
+Source Track Number: Source Track number. Track numbers start at 1.
+Destination Track Number: Destination Track number. Track numbers start at 1.
+
+### <a name="delete_track"></a>Delete track
+
+Permanently delete a track from the inserted MiniDisc.
+
+Target: Target NetMD Device or media_player entity.
+Track Number: Track to be deleted. WARNING! This cannot be made undone! Track numbers start at 1.
+
+### <a name="play_track"></a>Play track
+
+Select and play a track.
+
+Target: Target NetMD Device or media_player entity.
+Track Number: Track to be played. Track numbers start at 1.
+
+### <a name="fast_forward"></a>Fast forward
+
+Start fast-forwarding the current track on the inserted MiniDisc.
+
+Target: Target NetMD Device or media_player entity.
+
+### <a name="rewind"></a>Rewind
+
+Start rewinding the current track on the inserted MiniDisc.
+
+Target: Target NetMD Device or media_player entity.
 
 ## <a name="hacs_install"></a>HACS Install
 
