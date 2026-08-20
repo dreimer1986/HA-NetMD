@@ -27,6 +27,7 @@ This setup creates a remote controllable stream on http://homeassistant.local:88
       * [MiniDisc Streamer Status](#minidisc_streamer_status)
   * [P.S.](#ps)
   * [SSH](#ssh)
+* [Playback with Music Assistant](#playback_ma)
 * [Pictures](#pictures)
 
 ## <a name="features"></a>Features
@@ -149,6 +150,29 @@ chmod 644 /config/.ssh/id_rsa.pub
 ```
 
 Now you can use the shell commands I made for that.
+
+## <a name="playback_ma"></a>Playback with Music Assistant
+
+The most effective way to play the MiniDisc contents with this Addon would be Music Assistant.
+
+1. Install the Home Assistant App from the integrated App Store and configure it to your wishes. The app has dozes of ways to connect to whatever playback options you have in your network. Of course you can use the web browser you use right now to set it up as playback option, too.
+
+2. To have a nice logo for the Stream you first copy /homeassistant/custom_components/netmd/brand/icon.png to /homeassistant/www/icon.png. This will be needed later in the process.
+
+3. The Addon sets up a music stream as already explained above. Thus we need a way to connect to this stream. In Music Assistant you need to look for the menu item "Radios". Then the three dots in the top right corner and in the menu there you need to click on "Add by URL".
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/ma_setup_radio.png" alt="Music Assistant Radio Stream Setup">
+</p>
+
+4. In the following window you add the settings and path the following way:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/ma_setup_radio_2.png" alt="Music Assistant Radio Stream Setup 2">
+</p>
+
+5. Now the Radio Stream is fully setup and can be selected as source for whatever plackback option you have available. This works on the official Music Assistant App for playback, it was tested in Android Auto and CarPlay, too.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dreimer1986/HA-NetMD/refs/heads/master/media/ma_setup_radio_3.png" alt="Music Assistant Radio Stream Setup 3">
+</p>
 
 ## <a name="pictures"></a>Pictures
 
